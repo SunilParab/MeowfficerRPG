@@ -1,53 +1,41 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Abilities
 {
     public static List<Combatant> GetTargets(string name, bool isAlly) {
 
-        List<Combatant> output = new List<Combatant>();
-
         switch(name) {
-            case "Punch":
-                
-                break;
-            case "Shoot":
-                
-                break;
-            case "Defend":
-                
-                break;
+
+            default:
+                if (isAlly) {
+                    return new List<Combatant>(GameManager.manager.enemies);
+                } else {
+                    return new List<Combatant>(GameManager.manager.allies);
+                }
         }
-        
-        output.Add(GameManager.manager.allies[0]);
-        return output;
     }
 
     public static void UseAbility(string name, Combatant target) {
-        switch(name) {
-            case "Punch":
-                Punch(target);
-                break;
-            case "Shoot":
-                Shoot(target);
-                break;
-            case "Defend":
-                Defend(target);
-                break;
-        }
+
+        object[] input = {target};
+        typeof(Abilities).GetMethod(name).Invoke(null,input);
+
     }
 
-    static void Punch(Combatant target) {
-        Debug.Log("pow");
+    static public void Punch(Combatant target) {
+        target.TakeDamage(10);
     }
 
-    static void Shoot(Combatant target) {
-        Debug.Log("pew");
+    static public void Shoot(Combatant target) {
+        target.TakeDamage(30);
     }
 
-    static void Defend(Combatant target) {
+    static public void Defend(Combatant target) {
 
     }
 

@@ -50,13 +50,16 @@ public class GameManager : MonoBehaviour
 
             } else {
 
-                string[] abilityList = enemies[curActor].getAbilities();
+                string[] abilityList = enemies[curActor].GetAbilities();
 
                 string chosenAbility = abilityList[Random.Range(0,abilityList.Length)];
 
                 List<Combatant> targets = Abilities.GetTargets(chosenAbility,allyTurn);
 
                 Abilities.UseAbility(chosenAbility,targets[Random.Range(0,targets.Count)]);
+
+                Invoke("TurnDelay",delayTime);
+                actionReady = false;
 
             }
 
