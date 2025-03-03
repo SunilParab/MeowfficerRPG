@@ -39,4 +39,12 @@ public class Abilities
 
     }
 
+    static public void Flip(Combatant target) {
+
+    }
+
+    static public void Encourage(Combatant target) {
+
+    }
+
 }
