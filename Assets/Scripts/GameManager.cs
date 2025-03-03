@@ -41,7 +41,9 @@ public class GameManager : MonoBehaviour
 
                 if (interAction.triggered) {
 
-                    Debug.Log("yay");
+                    
+                    
+                    allies[curActor].EndTurn();
 
                     Invoke("TurnDelay",delayTime);
                     actionReady = false;
