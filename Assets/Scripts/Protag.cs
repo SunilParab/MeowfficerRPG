@@ -12,7 +12,7 @@ public class Protag : Ally
     {
         alive = true;
         abilities = new string[] {"Punch","Shoot","Defend"};
-        stats = new Stats(startHealth,startMana);
+        stats = new Stats(startHealth,startMana,"Protag");
     }
 
 }

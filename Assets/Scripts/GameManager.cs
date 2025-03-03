@@ -1,35 +1,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
 
-    public Ally[] allies;
-    public Enemy[] enemies;
+    public List<Ally> allies;
+    public List<Enemy> enemies;
     
     [SerializeField]
     bool allyTurn = true;
-    int curActor = 0;
+    public int curActor = 0;
+
+    bool optionsShown = false;
 
     bool actionReady = true;
     [SerializeField]
     int delayTime = 1;
 
-    InputAction navAction;
-    InputAction interAction;
+    [SerializeField]
+    TextMeshProUGUI text;
 
-    public static GameManager manager;
+    public static GameManager reference;
 
     void Awake()
     {
-        manager = this;
+        reference = this;
     }
 
     void Start()
     {
-        navAction = InputSystem.actions.FindAction("Navigate");
-        interAction = InputSystem.actions.FindAction("Interact");
     }
 
     // Update is called once per frame
@@ -37,18 +38,10 @@ public class GameManager : MonoBehaviour
     {
         if (actionReady) {
 
-            if (allyTurn) {
+            if (allyTurn && !optionsShown) {
 
-                if (interAction.triggered) {
-
-                    
-                    
-                    allies[curActor].EndTurn();
-
-                    Invoke("TurnDelay",delayTime);
-                    actionReady = false;
-
-                }
+                optionsShown = true;
+                UIManager.reference.StartChoices();
 
             } else {
 
@@ -68,6 +61,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void TakeChoice() {
+        allies[curActor].EndTurn();
+
+        Invoke("TurnDelay",delayTime);
+        actionReady = false;
+        optionsShown = false;
+    }
 
     void TurnDelay() {
         actionReady = true;

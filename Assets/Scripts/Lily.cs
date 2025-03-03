@@ -12,7 +12,7 @@ public class Lily : Ally
     {
         alive = true;
         abilities = new string[] {"Flip","Shoot","Encourage"};
-        stats = new Stats(startHealth,startMana);
+        stats = new Stats(startHealth,startMana,"Lily");
     }
 
 }

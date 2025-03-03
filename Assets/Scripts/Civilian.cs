@@ -12,7 +12,7 @@ public class Civilian : Enemy
     {
         alive = true;
         abilities = new string[] {"Punch","Shoot"};
-        stats = new Stats(startHealth,startMana);
+        stats = new Stats(startHealth,startMana,"Civilian");
     }
 
 }

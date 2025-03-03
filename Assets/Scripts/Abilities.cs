@@ -13,9 +13,9 @@ public class Abilities
 
             default:
                 if (isAlly) {
-                    return new List<Combatant>(GameManager.manager.enemies);
+                    return new List<Combatant>(GameManager.reference.enemies);
                 } else {
-                    return new List<Combatant>(GameManager.manager.allies);
+                    return new List<Combatant>(GameManager.reference.allies);
                 }
         }
     }

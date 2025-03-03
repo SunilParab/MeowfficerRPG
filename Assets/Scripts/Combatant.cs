@@ -27,6 +27,10 @@ public class Combatant : MonoBehaviour
         blocker = null;
     }
 
+    public string GetName() {
+        return stats.name;
+    }
+
 }
 
 [System.Serializable]
@@ -34,10 +38,12 @@ public struct Stats {
     
     public int health;
     public int energy;
+    public string name;
 
-    public Stats(int health, int energy) {
+    public Stats(int health, int energy, string name) {
         this.health = health;
         this.energy = energy;
+        this.name = name;
     }
 
 }
